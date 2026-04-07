@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdihakim Mohamed — DevOps & Cloud Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #0a2540;
+    --blue-mid: #1a56db;
+    --blue-accent: #3b82f6;
+    --blue-light: #dbeafe;
+    --blue-pale: #eff6ff;
+    --white: #ffffff;
+    --off-white: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-400: #94a3b8;
+    --gray-600: #475569;
+    --gray-800: #1e293b;
+    --text: #0f172a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    letter-spacing: -0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gray-600);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue-mid); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--blue-deep);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 8% 80px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 8s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(26,86,219,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 10s ease-in-out infinite reverse;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid rgba(59,130,246,0.3);
+    color: var(--blue-accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--blue-accent);
+    border-radius: 50%;
+    animation: blink 2s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--blue-accent);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-summary {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blue-mid);
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1.6rem;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(26,86,219,0.4);
+  }
+  .btn-primary:hover {
+    background: var(--blue-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(26,86,219,0.5);
+  }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    padding: 0.75rem 1.6rem;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: all 0.25s;
+  }
+  .btn-ghost:hover {
+    border-color: rgba(255,255,255,0.5);
+    color: white;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    animation: fadeLeft 0.7s 0.5s ease both;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    min-width: 130px;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 90px 8%;
+  }
+  .section-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .section-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--blue-mid);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: var(--blue-deep);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+  }
+  .section-title span {
+    color: var(--blue-mid);
+  }
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: var(--blue-mid);
+    border-radius: 2px;
+    margin: 0.75rem 0 2.5rem;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--white); }
+  .exp-timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--blue-mid), var(--blue-light));
+    border-radius: 1px;
+  }
+  .exp-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .exp-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .exp-dot {
+    position: absolute;
+    left: -2.42rem;
+    top: 6px;
+    width: 14px; height: 14px;
+    background: var(--blue-mid);
+    border-radius: 50%;
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 2px var(--blue-mid);
+  }
+  .exp-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+  .exp-role {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    letter-spacing: -0.01em;
+  }
+  .exp-date {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--blue-mid);
+    background: var(--blue-pale);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .exp-company {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--gray-600);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .exp-company::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 4px;
+    background: var(--blue-accent);
+    border-radius: 50%;
+  }
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .exp-bullets li {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--blue-accent);
+    font-size: 0.78rem;
+    top: 0.1rem;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--off-white); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .skill-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.25s;
+  }
+  .skill-card:hover {
+    border-color: var(--blue-accent);
+    box-shadow: 0 6px 24px rgba(59,130,246,0.1);
+    transform: translateY(-3px);
+  }
+  .skill-cat {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .skill-icon {
+    width: 36px; height: 36px;
+    background: var(--blue-pale);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+  .skill-cat-name {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue-deep);
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .skill-tag {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--blue-mid);
+    background: var(--blue-pale);
+    border: 1px solid var(--blue-light);
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+  }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--white); }
+  .edu-card {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, #0f3460 100%);
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .edu-card::before {
+    content: '🎓';
+    font-size: 5rem;
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.1;
+  }
+  .edu-badge-icon {
+    width: 64px; height: 64px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.25rem;
+  }
+  .edu-school {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--blue-accent);
+    margin-bottom: 0.2rem;
+  }
+  .edu-location {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ── CERTIFICATIONS ── */
+  #certifications { background: var(--off-white); }
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .cert-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: all 0.25s;
+    position: relative;
+  }
+  .cert-card:hover {
+    border-color: var(--blue-accent);
+    box-shadow: 0 6px 20px rgba(59,130,246,0.1);
+  }
+  .cert-icon {
+    width: 40px; height: 40px;
+    background: var(--blue-pale);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .cert-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 0.2rem;
+  }
+  .cert-status {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #f59e0b;
+    background: #fef3c7;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    display: inline-block;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--blue-deep);
+  }
+  #contact .section-tag { color: var(--blue-accent); }
+  #contact .section-title { color: white; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .contact-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .contact-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--blue-accent);
+    transform: translateY(-3px);
+  }
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: var(--blue-mid);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .contact-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 0.2rem;
+  }
+  .contact-value {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: white;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1e;
+    padding: 1.5rem 8%;
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ── SCROLL ANIMATION ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 700px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    .edu-card { grid-template-columns: 1fr; }
+    nav { padding: 0 4%; }
+    .nav-links { gap: 1rem; }
+    section { padding: 60px 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AM.</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge">Available for opportunities</div>
+      <h1 class="hero-name">Abdihakim<br>Mohamed</h1>
+      <p class="hero-title">DevOps & Cloud Engineer · Deployment Engineer · Tech Lead</p>
+      <p class="hero-summary">
+        Driven technology professional with hands-on experience in CI/CD automation, container orchestration, and cloud infrastructure. Adept at bridging technical operations with team leadership — delivering reliable deployments and measurable process improvements.
+      </p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn-primary">View Experience ↓</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">30</div>
+        <div class="stat-label">Team Members Led</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">30%</div>
+        <div class="stat-label">Faster Resolution</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">AI Projects Shipped</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-tag">Career History</p>
+    <h2 class="section-title">Work <span>Experience</span></h2>
+    <div class="divider"></div>
+
+    <div class="exp-timeline">
+
+      <div class="exp-item reveal">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <span class="exp-role">Deployment Engineer Intern</span>
+          <span class="exp-date">Apr 2025 – Sep 2025</span>
+        </div>
+        <div class="exp-company">Boros Labs · Irving, TX</div>
+        <ul class="exp-bullets">
+          <li>Configured and maintained GitLab CI pipelines to support build and deployment automation.</li>
+          <li>Containerized applications with Docker and deployed them to Kubernetes environments.</li>
+          <li>Set up Prometheus and Grafana for service monitoring and alert configuration.</li>
+          <li>Collaborated on troubleshooting sessions to identify and resolve deployment issues.</li>
+          <li>Contributed to documentation and internal knowledge sharing to improve onboarding.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <span class="exp-role">Team Lead — Technical Operations & Customer Support</span>
+          <span class="exp-date">Mar 2025 – Present</span>
+        </div>
+        <div class="exp-company">GetInsured · Remote</div>
+        <ul class="exp-bullets">
+          <li>Promoted to lead a 30-member team across multiple business lines, ensuring quality, productivity, and compliance.</li>
+          <li>Developed and tested YONYX call flows with QA and data teams, improving logic accuracy and user experience.</li>
+          <li>Leveraged call flow analytics to identify bottlenecks, reducing handle time and escalations by ~15%.</li>
+          <li>Managed training, coaching, and QA feedback loops to strengthen agent consistency and customer satisfaction.</li>
+          <li>Built performance dashboards enabling leadership to track efficiency and operational trends in real time.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <span class="exp-role">Customer Service Technical Specialist</span>
+          <span class="exp-date">Sep 2024 – Apr 2025</span>
+        </div>
+        <div class="exp-company">GetInsured · Remote</div>
+        <ul class="exp-bullets">
+          <li>Resolved technical issues via chat and phone; authored knowledge base entries that reduced avg. resolution time by 30%.</li>
+          <li>Supported CRM, password resets, and browser troubleshooting for non-technical users.</li>
+          <li>Consistently adhered to HIPAA and GDPR data privacy regulations across all customer channels.</li>
+          <li>Maintained high-accuracy customer account records, upholding data integrity in CRM databases.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <span class="exp-role">Software Engineering Fellow</span>
+          <span class="exp-date">Aug 2024 – Sep 2024</span>
+        </div>
+        <div class="exp-company">Headstarter (HS) · Remote</div>
+        <ul class="exp-bullets">
+          <li>Developed and deployed 5 AI-based projects using modern tools including Vercel and GCP.</li>
+          <li>Gained proficiency in AI/ML algorithms and software engineering best practices.</li>
+          <li>Participated in 5 weekend hackathons, collaborating in small teams under time-sensitive conditions.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <span class="exp-role">Pharmaceutical Technician</span>
+          <span class="exp-date">Oct 2021 – Aug 2024</span>
+        </div>
+        <div class="exp-company">CVS Health · Irving, TX</div>
+        <ul class="exp-bullets">
+          <li>Maintained a sub-1% error rate in a high-volume, fast-paced pharmacy environment.</li>
+          <li>Leveraged pharmacy software (Rx30, QS/1) and automation tools to manage inventory and optimize workflows.</li>
+          <li>Ensured data integrity and regulatory compliance across all patient and prescription records.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-tag">Technical Proficiency</p>
+    <h2 class="section-title">Skills &amp; <span>Technologies</span></h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+
+      <div class="skill-card reveal">
+        <div class="skill-cat">
+          <div class="skill-icon">⚙️</div>
+          <span class="skill-cat-name">DevOps & Automation</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">GitLab CI</span>
+          <span class="skill-tag">Terraform</span>
+          <span class="skill-tag">Ansible</span>
+          <span class="skill-tag">PowerShell</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-cat">
+          <div class="skill-icon">☁️</div>
+          <span class="skill-cat-name">Cloud Platforms</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">GCP</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-cat">
+          <div class="skill-icon">📊</div>
+          <span class="skill-cat-name">Monitoring & Logging</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Prometheus</span>
+          <span class="skill-tag">Grafana</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-cat">
+          <div class="skill-icon">💻</div>
+          <span class="skill-cat-name">Languages & Frameworks</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">HTML/CSS</span>
+          <span class="skill-tag">React.js</span>
+          <span class="skill-tag">Angular</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-cat">
+          <div class="skill-icon">🛠️</div>
+          <span class="skill-cat-name">Tools & Systems</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">GitLab</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Windows</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Android Studio</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-cat">
+          <div class="skill-icon">🔒</div>
+          <span class="skill-cat-name">Compliance & Security</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">HIPAA</span>
+          <span class="skill-tag">GDPR</span>
+          <span class="skill-tag">Data Privacy</span>
+          <span class="skill-tag">Secure Comms</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <p class="section-tag">Academic Background</p>
+    <h2 class="section-title">Edu<span>cation</span></h2>
+    <div class="divider"></div>
+    <div class="edu-card reveal">
+      <div class="edu-badge-icon">🏛️</div>
+      <div>
+        <div class="edu-degree">B.S. in Information Systems and Management</div>
+        <div class="edu-school">The University of Texas at Arlington</div>
+        <div class="edu-location">Arlington, TX</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <p class="section-tag">Professional Development</p>
+    <h2 class="section-title">Certifi<span>cations</span></h2>
+    <div class="divider"></div>
+    <div class="cert-grid">
+
+      <div class="cert-card reveal">
+        <div class="cert-icon">🌐</div>
+        <div>
+          <div class="cert-name">CompTIA Network+</div>
+          <span class="cert-status">In Progress</span>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon">🔐</div>
+        <div>
+          <div class="cert-name">CompTIA Security+</div>
+          <span class="cert-status">In Progress</span>
+        </div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon">☸️</div>
+        <div>
+          <div class="cert-name">CKA — Certified Kubernetes Administrator</div>
+          <span class="cert-status">In Progress</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-tag">Let's Connect</p>
+    <h2 class="section-title">Get in <span style="color:var(--blue-accent)">Touch</span></h2>
+    <div class="divider" style="background:var(--blue-accent)"></div>
+    <div class="contact-grid">
+      <a href="mailto:abdihakim.dev@gmail.com" class="contact-card reveal">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">abdihakim.dev@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:4694508536" class="contact-card reveal">
+        <div class="contact-icon">📱</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">(469) 450-8536</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/abdihakim-mohamed" target="_blank" class="contact-card reveal">
+        <div class="contact-icon">💼</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">abdihakim-mohamed</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Abdihakim Mohamed · Built for recruiters, designed with intent.
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
